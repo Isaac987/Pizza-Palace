@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
 
-  <body class="grey lighten-4">
+  <body class="purple lighten-5">
     <!-- Desktop Nav -->
     <nav>
         <div class="nav-wrapper">

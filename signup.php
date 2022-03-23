@@ -17,6 +17,7 @@ function clean_input($data) {
 $errors = ["email"=>"", "password"=>"", "confirm_password"=>"", "first_name"=>"", "last_name"=>"", "phone_number"=>"", "zip_code"=>""];
 $email = $password = $confirm_password = $first_name = $last_name = $phone_number = $zip_code = '';
 
+// on submit
 if (isset($_POST["email"])) {
     $email = clean_input($_POST["email"]);
     $password = clean_input($_POST["password"]);
@@ -77,19 +78,19 @@ if (isset($_POST["email"])) {
         $errors["zip_code"] = "enter valid zip code!";
     }
 
+    // if no errors
     if (!array_filter($errors)) {
-
         $sql_check = "SELECT email FROM users WHERE email='$email'";
-        
         $sql_insert = "INSERT INTO users(email, password, first_name, last_name, phone_number, zip_code)
                 VALUES ('$email', '$password', '$first_name', '$last_name', '$phone_number', '$zip_code')";
 
         $result = mysqli_query($conn, $sql_check);
 
+        // bad error managment
         if (!$result) {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-
+        
         if (mysqli_num_rows($result) == 0) {
             if (!mysqli_query($conn, $sql_insert)) {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
